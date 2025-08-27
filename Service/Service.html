@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Services — HUE SIXTEEN</title>
+  <meta name="description" content="Brand identity, social media design, mockups, packaging and more." />
+  <meta name="theme-color" content="#310381" />
+
+  <!-- Favicon (one level up from /Service) -->
+  <link rel="icon" type="image/png" href="../Images/Favicon.png" />
+
+  <!-- Shared styles (header/nav etc.) -->
+  <link rel="stylesheet" href="../LandingPage.css" />
+  <!-- Page-specific styles -->
+  <link rel="stylesheet" href="Service.css" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;800;900&display=swap" rel="stylesheet" />
+</head>
+
+<body>
+  <!-- ===== Header (same as index, paths fixed) ===== -->
+  <header class="header">
+    <div class="container_nav">
+      <a href="../index.html" class="brandtext" aria-label="Hue Sixteen — Home">
+        <img src="../Images/Logo.png" class="headerlogo" alt="Hue Sixteen logo" />
+        HUE SIXTEEN
+      </a>
+
+      <nav class="menu" aria-label="Primary">
+        <a href="../index.html" class="nav-link">Home</a>
+        <a href="Service.html" class="nav-link" aria-current="page">Services</a>
+        <a href="../Portfolio/Portfolio.html" class="nav-link">Portfolio</a>
+        <a href="../Pricing/Pricing.html" class="nav-link">Pricing</a>
+        <a href="../About/About.html" class="nav-link">About</a>
+      </nav>
+
+      <button class="hiremebtn">Start a Project</button>
+    </div>
+  </header>
+
+  <!-- ===== Hero / Intro ===== -->
+  <section class="svc-hero">
+    <div class="svc-container">
+      <h1 class="svc-title">Design services that move brands forward</h1>
+      <p class="svc-sub">From logos to full brand systems and social media content—crafted to be clean, modern and effective.</p>
+      <div class="svc-cta">
+        <a href="#" class="hiremebutton primary">Start a Project</a>
+        <a href="#services" class="hiremebutton secondary">See Services</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Services grid ===== -->
+  <section id="services" class="svc-section">
+    <div class="svc-container">
+      <div class="svc-grid">
+        <!-- Card 1 -->
+        <article class="svc-card">
+          <div class="svc-icon">🎯</div>
+          <h3 class="svc-card-title">Brand Identity</h3>
+          <p>Create a consistent brand system—logo, color, type and usage—that people remember.</p>
+          <a href="#" class="svc-link">View samples ↗</a>
+        </article>
+
+        <!-- Card 2 -->
+        <article class="svc-card">
+          <div class="svc-icon">📱</div>
+          <h3 class="svc-card-title">Social Media Design</h3>
+          <p>On-brand post templates, covers and ad creatives that improve engagement.</p>
+          <a href="#" class="svc-link">View samples ↗</a>
+        </article>
+
+        <!-- Card 3 -->
+        <article class="svc-card">
+          <div class="svc-icon">🧪</div>
+          <h3 class="svc-card-title">Product Mockups</h3>
+          <p>High-quality, realistic mockups for ecommerce, presentations and marketing.</p>
+          <a href="#" class="svc-link">View samples ↗</a>
+        </article>
+
+        <!-- Card 4 -->
+        <article class="svc-card">
+          <div class="svc-icon">📦</div>
+          <h3 class="svc-card-title">Packaging</h3>
+          <p>Clean, compliant packaging designs aligned with your brand and audience.</p>
+          <a href="#" class="svc-link">View samples ↗</a>
+        </article>
+
+        <!-- Card 5 -->
+        <article class="svc-card">
+          <div class="svc-icon">🧩</div>
+          <h3 class="svc-card-title">Brand Guidelines</h3>
+          <p>Usable brand manuals so teams keep everything consistent everywhere.</p>
+          <a href="#" class="svc-link">View samples ↗</a>
+        </article>
+
+        <!-- Card 6 -->
+        <article class="svc-card">
+          <div class="svc-icon">📣</div>
+          <h3 class="svc-card-title">Marketing Collateral</h3>
+          <p>Pitch decks, brochures, banners—polished assets for campaigns and events.</p>
+          <a href="#" class="svc-link">View samples ↗</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Footer (very simple) ===== -->
+  <footer class="svc-footer">
+    <div class="svc-container">
+      <p>© <span id="yr"></span> HUE SIXTEEN. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // footer year
+    document.getElementById('yr').textContent = new Date().getFullYear();
+  </script>
+  <!-- If you need page specific JS later: <script src="Service.js" defer></script> -->
+</body>
+</html>

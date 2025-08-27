@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Portfolio — HUE SIXTEEN</title>
+  <meta name="description" content="See our portfolio of graphics design projects: branding, mockups, social media, packaging and more.">
+  <meta name="theme-color" content="#310381" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="../Images/Favicon.png">
+
+  <!-- Shared CSS (header, footer, common styles) -->
+  <link rel="stylesheet" href="../LandingPage.css">
+
+  <!-- Page-specific CSS -->
+  <link rel="stylesheet" href="Portfolio.css">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;800;900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+  <!-- ===== Header (common) ===== -->
+  <header class="header">
+    <div class="container_nav">
+      <a href="../index.html" class="brandtext" aria-label="Hue Sixteen — Home">
+        <img src="../Images/Logo.png" class="headerlogo" alt="Hue Sixteen logo">
+        HUE SIXTEEN
+      </a>
+
+      <nav class="menu" aria-label="Primary">
+        <a href="../index.html" class="nav-link">Home</a>
+        <a href="../Service/Service.html" class="nav-link">Services</a>
+        <a href="Portfolio.html" class="nav-link" aria-current="page">Portfolio</a>
+        <a href="../Pricing/Pricing.html" class="nav-link">Pricing</a>
+        <a href="../About/About.html" class="nav-link">About</a>
+      </nav>
+
+      <button class="hiremebtn">Start a Project</button>
+    </div>
+  </header>
+
+
+  <!-- ===== Portfolio Section ===== -->
+  <main class="portfolio-section">
+    <div class="container">
+      <h1 class="portfolio-title">Our Portfolio</h1>
+      <p class="portfolio-subtitle">Selected works in branding, mockups, social media and more.</p>
+
+      <div class="portfolio-grid">
+        <!-- Portfolio Card -->
+        <div class="portfolio-card">
+          <img src="../Images/Slider.jpg" alt="Project Preview">
+          <h3>Brand Identity Project</h3>
+          <p>Logo + brand system design for a startup.</p>
+        </div>
+
+        <div class="portfolio-card">
+          <img src="../Images/BrandMarquee/Logo1.png" alt="Project Preview">
+          <h3>Mockup Showcase</h3>
+          <p>High-quality product mockups for an ecommerce brand.</p>
+        </div>
+
+        <div class="portfolio-card">
+          <img src="../Images/BrandMarquee/Logo2.png" alt="Project Preview">
+          <h3>Social Media Campaign</h3>
+          <p>Creative visuals for Instagram and Facebook ads.</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+
+  <!-- ===== Footer (common) ===== -->
+  <footer class="footer">
+    <div class="container">
+      <p>© 2025 HUE SIXTEEN. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- JS -->
+  <script src="Portfolio.js" defer></script>
+</body>
+</html>

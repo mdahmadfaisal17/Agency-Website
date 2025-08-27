@@ -1,0 +1,588 @@
+ body {
+  margin: 0 0 0 0;
+ }
+
+
+ /* ===== Header base ===== */
+.header{
+  position: sticky;               /* স্ক্রলে visible */
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+  height: 70px;
+  background-color: #310381;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 12px rgba(0,0,0,.08); /* subtle depth */
+  font-family: Poppins, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+}
+
+/* Container width control */
+.container_nav {
+  max-width: 1200px;   /* fixed width এর বদলে max-width */
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 20px;     /* দুই পাশে একটু padding */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;  /* logo left, menu center, button right */
+}
+
+
+/* Brand */
+.headerlogo{ width: 60px; margin-right: 10px; }
+
+.brandtext {
+  display: flex;
+  align-items: center;
+  font-size: 24px;
+  font-weight: bold;
+  color: #ffffff;
+  text-decoration: none;
+  margin-right: 30px;  /* logo আর menu এর মাঝে gap */
+  width: auto;         /* fixed width বাদ */
+}
+
+/* Menu */
+.menu {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+.menu .nav-link {
+  position: relative;
+  padding: 6px 4px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color .2s ease;
+}
+
+/* Hover এ underline */
+.menu .nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 0;
+  height: 2.5px;
+  border-radius: 7px;
+  background: #ffb910;
+  transition: width .28s cubic-bezier(.25,.8,.25,1);
+}
+
+.menu .nav-link:hover {
+  color: #ffb910;
+}
+.menu .nav-link:hover::after {
+  width: 100%;
+}
+
+/* Active page underline fix */
+.menu .nav-link[aria-current="page"] {
+  color: #ffb910;
+}
+.menu .nav-link[aria-current="page"]::after {
+  width: 100%;
+}
+
+
+
+/* CTA button */
+.hiremebtn{
+  border-radius: 10px;
+  background: linear-gradient(135deg,#ffb910 0%, #ff8a10 100%);
+  color: #310381;
+  padding: 10px 18px;
+  border: 0;
+  cursor: pointer;
+  font-family: Poppins, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  transform: translateY(0);
+  transition: background-color .25s ease, color .25s ease, transform .12s ease;
+}
+.hiremebtn:hover{ background:#ffffff; transform: translateY(-2px); }
+.hiremebtn:focus-visible{ outline:3px solid #ffffff; outline-offset:2px; }
+.hiremebutton:active{ transform: translateY(0); }
+
+
+/* Mobile (basic stack — JS ছাড়া) */
+@media (max-width: 768px){
+  .container_nav{ flex-wrap: wrap; row-gap: 8px; height:auto; padding:10px 12px; }
+  .brandtext{ font-size: 24px; height:auto; }
+  .menu{ width:100%; justify-content:flex-start; flex-wrap:wrap; gap:8px 10px; order: 3; }
+  .hiremebtn{ order: 2; margin-left: 0; }
+}
+
+
+
+
+
+ /*slider Shuru*/
+
+ .slider {
+  width: 100%;
+  height: 600px;
+  background-color: #8f1c1c;
+  margin: 0;
+  background: url('Images/Slider.jpg') no-repeat center center;
+  background-size: cover;
+  display: flex;
+  align-items: flex-start;
+  position: relative;
+ }
+
+ .container { max-width:1200px;
+  margin:0 auto;
+  padding:0 16px;
+}
+ 
+ .leftside {
+    width: 65%;
+    margin-top: 70px;
+    height:  100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  
+  .slidebottomtext {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    gap: 30px;
+
+  }
+
+
+  .slideline1, .slideline2 {
+    width: 100%;
+  display: block;
+  font-family: poppins, sans-serif;
+  text-align: center;
+ }
+
+ .slideline1 {
+  margin-bottom: 20px;
+  font-size: 40px;
+  font-weight: 700;
+  color: #ffb910;
+  
+ }
+  .slideline2 {
+    line-height: 0.8;
+  color: #310381;
+  font-size: 140px;
+  font-weight: 1000;
+  }
+  .sliderpara {
+    margin: 0 20px 0 20px;
+    font-family: poppins, sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    display: block;
+    color: #363636;
+    text-align: center;
+  }
+
+  
+
+  /*slider buttons*/
+
+  /* CTA row */
+.cta-row{
+  display: flex;
+  gap: 18px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;           /* ছোট স্ক্রিনে সুন্দরভাবে wrap হবে */
+}
+
+/* Base button */
+.hiremebutton{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding: 15px 24px;
+  font-family: Poppins, sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 10px;
+  border: 0;
+  cursor: pointer;
+  text-decoration: none;
+  line-height: 1;
+  transition: transform .2s ease, box-shadow .25s ease, background-color .25s ease, color .25s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,.10);
+}
+
+/* Primary (Start a Project) */
+.hiremebutton.primary{
+  background: linear-gradient(135deg,#ffb910 0%, #ff8a10 100%);
+  color: #310381;
+  padding: 17px 24px;
+}
+.hiremebutton.primary:hover{
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0,0,0,.18);
+}
+.hiremebutton.primary:active{
+  transform: translateY(0);
+}
+
+/* Secondary (Learn More) */
+.hiremebutton.secondary{
+  background: transparent;
+  color: #310381;
+  border: 2px solid #310381;
+  box-shadow: none;
+}
+.hiremebutton.secondary:hover{
+  background: #310381;
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+.hiremebutton.secondary:active{
+  transform: translateY(0);
+}
+
+/* Focus accessibility */
+.hiremebutton:focus-visible{
+  outline: 3px solid #ffb910;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(255,185,16,.25);
+}
+
+/* Optional: arrow for Learn More */
+.hiremebutton.secondary::after{
+  content: "↗";
+  font-size: 18px;
+  margin-left: 10px;
+  transition: transform .2s ease;
+}
+.hiremebutton.secondary:hover::after{
+  transform: translateX(2px) translateY(-2px);
+}
+
+/* Respect reduced-motion */
+@media (prefers-reduced-motion: reduce){
+  .hiremebutton{ transition: none; }
+}
+
+
+
+ 
+
+
+ .alltexts {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+ }
+
+
+/* ===== Single Glass Badge ===== */
+.expert-glass {
+  position: absolute;
+  right: 3%;           
+  top: 270px;           
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 28px;   /* একটু ব্যালেন্সড padding */
+  border-radius: 12px;
+  cursor: pointer;
+
+  /* glassmorphism */
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+
+  color: #310381;
+  font-size: 18px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  z-index: 5;
+  text-transform: uppercase;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover effect */
+.expert-glass:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.25);
+}
+
+
+
+
+
+
+
+
+
+/*new*/
+
+/* === আপনার আগের .expert-glass যেমন আছে তেমনই থাকবে === */
+
+/* Blinking caret */
+.cursor{
+  display: inline-block;
+  width: 2px;
+  height: 1em;                 /* টেক্সট উচ্চতার সমান */
+  background: #310381;         /* কার্সর রঙ */
+  margin-left: 6px;
+  transform: translateY(2px);  /* baseline মিলাতে সামান্য নিচে */
+  animation: caretBlink .9s steps(1) infinite;
+}
+
+/* পজের সময় কার্সর লুকাতে */
+.cursor.hidden{
+  opacity: 0;
+  animation: none;
+}
+
+@keyframes caretBlink{
+  50% { opacity: 0; }
+}
+
+
+
+
+
+
+
+/* ===== Brand Marquee (Final clean version) ===== */
+
+
+/* Strip = ব্যাজ + রেল */
+.brand-strip{
+  position: relative;
+  background:#310381;
+  height: 120px;         /* চাইলে 80–100px টিউন করো */
+  padding:0;
+  display:flex;
+  align-items:stretch;
+}
+
+/* বাম পাশের স্ট্যাটিক ব্যাজ */
+.brand-info {
+  flex: 0 0 auto;
+  background: #ffb910;
+  color: #310381;
+  font: 700 20px/1.4 Poppins, sans-serif;
+
+  max-width: 150px;   /* ← ছোট করলে টেক্সট break হবে */
+  padding: 0 12px;
+  margin-right: 24px;
+
+  white-space: normal;
+  word-break: break-word;
+  line-height: 1.4;
+
+  display: flex;
+  align-items: center;
+  align-self: stretch;
+  text-align: center; /* left নয়, center রাখলে balanced হবে */
+}
+
+
+/* ডান পাশের marquee রেল */
+.brand-rail{
+  position:relative;
+  flex:1 1 auto;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+}
+
+/* ফেড শুধু রেলের ভিতরে */
+.brand-rail::before,
+.brand-rail::after{
+  content:"";
+  position:absolute;
+  top:0; bottom:0;
+  width:120px;
+  pointer-events:none;
+  z-index:2;
+}
+.brand-rail::before{ left:0;  background:linear-gradient(to right, #310381, rgba(49,3,129,0)); }
+.brand-rail::after { right:0; background:linear-gradient(to left,  #310381, rgba(49,3,129,0)); }
+
+/* ট্র্যাক + রো + লোগো (আগের মতো) */
+.brand-track{
+  display:flex;
+  width:max-content;
+  will-change:transform;
+  animation: brandScroll var(--scroll-duration,24s) linear infinite;
+  gap:0;
+}
+.brand-strip:hover .brand-track{ animation-play-state: paused; }
+
+@media (prefers-reduced-motion: reduce){
+  .brand-track{ animation:none; }
+}
+
+.brand-row{
+  display:flex;
+  align-items:center;
+  gap:56px;
+  list-style:none;
+  margin:0;
+  padding:0 56px 0 0;
+  flex:0 0 auto;
+}
+
+
+
+/* আগের img স্টাইল থাকলে সরিয়ে দাও (বা রেখে দিলেও ক্ষতি হবে না) */
+.brand-row img{ display:none; }
+
+/* নতুন mask-ভিত্তিক লোগো */
+.logo{
+  display:inline-block;
+  height: 70px;            /* আগের মতো */
+  width: 160px;            /* চাইলে auto রাখতে পারো; width না দিলে mask aspect ধরে রাখতে bg-size নিয়ন্ত্রণ করো */
+  background-color: #ffffff;       /* <-- লোগোর রঙ: এখানে বদলাও */
+  -webkit-mask: var(--src) no-repeat center / contain;
+          mask: var(--src) no-repeat center / contain;
+  opacity: 0.5;
+  transition: opacity .2s ease, transform .2s ease, background-color .2s ease;
+}
+
+
+
+/* hover effect */
+.logo:hover{
+  opacity: 1;
+  transform: translateY(-2px);
+  /* চাইলে hover-এ রঙ বদলাও */
+  /* background-color: #ffb910; */
+}
+
+
+
+
+.brand-row img:hover{ filter:none; transform:translateY(-2px); }
+
+@keyframes brandScroll{
+  to{ transform: translateX(calc(-1 * var(--scroll-distance, 600px))); }
+}
+
+
+
+
+
+
+
+/* Service section*/
+
+
+/* ===== Stats / Numbers ===== */
+:root{
+  --brand:#310381;
+  --accent:#ffb910;
+  --ink:#1a1a1a;
+  --muted:#6b7280;
+  --stats-bg: #f7f5ff;            /* খুব হালকা বেগুনি */
+}
+
+.stats{
+  background: var(--stats-bg);
+  padding: 56px 16px;
+}
+
+.stats-row{
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 0;                         /* divider দেখানোর জন্য gap 0 */
+  align-items: center;
+}
+
+.kpi{
+  position: relative;
+  padding: 22px 18px;
+  text-align: center;
+}
+
+/* Vertical divider */
+
+/* Default (desktop/tablet) */
+.kpi:not(:last-child)::after {
+  content:"";
+  position:absolute;
+  right:0;
+  top:5%;              /* উপরের থেকে 5% gap */
+  width:1px;
+  height:90%;          /* নিচে 5% gap */
+  background: linear-gradient(
+    to bottom, 
+    rgba(49,3,129,0), 
+    rgba(49,3,129,.25), 
+    rgba(49,3,129,0)
+  );
+}
+
+/* Mobile screen এ line ছোট করো */
+@media (max-width: 768px) {
+  .kpi:not(:last-child)::after {
+    top:15%;
+    height:70%;        /* divider ছোট হবে */
+  }
+}
+
+
+
+/* Number */
+.kpi-value{
+  font-family: Poppins, sans-serif;
+  font-weight: 800;
+  font-size: clamp(28px, 5vw, 44px);
+  letter-spacing: .5px;
+  color: var(--brand);
+  line-height: 1;
+}
+
+/* Label */
+.kpi-label{
+  margin-top: 10px;
+  font-family: Poppins, sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+/* Hover: subtle lift */
+.kpi:hover .kpi-value{ transform: translateY(-2px); }
+.kpi .kpi-value{ transition: transform .2s ease; }
+
+/* Mobile */
+@media (max-width: 900px){
+  .stats-row{ grid-template-columns: repeat(2,1fr); }
+}
+@media (max-width: 520px){
+  .stats-row{ grid-template-columns: 1fr; }
+  .kpi:not(:last-child)::after{ display: none; }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce){
+  .kpi .kpi-value{ transition: none; }
+}
+
+
+
+/* Service Card*/
+/* ===== Services v2 (skeleton) ===== */
