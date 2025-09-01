@@ -138,6 +138,143 @@ type();
 
 
 
+/* ===== Services: Infinite center-focus carousel (left-based, double-clone, snap-fix) ===== */
+document.addEventListener("DOMContentLoaded", () => {
+  const viewport = document.querySelector(".srv-viewport");
+  const track    = document.querySelector(".srv-track");
+  const prevBtn  = document.querySelector(".srv-arrow.prev");
+  const nextBtn  = document.querySelector(".srv-arrow.next");
+  const pills    = [...document.querySelectorAll(".service-name")];
 
+  // left-ভিত্তিক easing
+  const EASE = "left 520ms cubic-bezier(.22,.61,.36,1)";
+  if (!viewport || !track) return;
 
-/*Service Card*/
+  /* ---------- real items ---------- */
+  const real = [...track.querySelectorAll(".srv-card")];
+  const R = real.length;
+  if (!R) return;
+
+  // ক্যাটাগরি -> প্রথম real index
+  const firstIndexOfCat = {};
+  real.forEach((card, i) => {
+    const cat = card.dataset.cat || "default";
+    if (firstIndexOfCat[cat] == null) firstIndexOfCat[cat] = i;
+  });
+
+  /* ---------- double clones: [last2,last1, ...real..., first1,first2] ---------- */
+  const last1  = real[R - 1].cloneNode(true);
+  const last2  = real[(R - 2 + R) % R].cloneNode(true);
+  const first1 = real[0].cloneNode(true);
+  const first2 = real[1 % R].cloneNode(true);
+  [last1, last2, first1, first2].forEach(n => n.classList.add("clone"));
+
+  track.insertBefore(last2, real[0]);   // 0
+  track.insertBefore(last1, real[0]);   // 1
+  track.appendChild(first1);            // R+2
+  track.appendChild(first2);            // R+3
+
+  let items = [...track.querySelectorAll(".srv-card")];
+
+  const OFFSET = 2;                     // প্রথম real = 2
+  const IDX = { FIRST: R+2, SECOND: R+3, LAST1: 1, LAST2: 0 };
+
+  // safety: CSS যদি সেট না থাকে, JS থেকে সেট করে দিই
+  track.style.position   = getComputedStyle(track).position === 'static' ? 'relative' : getComputedStyle(track).position;
+  if (!getComputedStyle(track).transition.includes('left')) track.style.transition = EASE;
+
+  let current = OFFSET;
+  let isAnimating = false;
+
+  /* ---------- helpers ---------- */
+  function setActivePill(cat){
+    pills.forEach(p => p.classList.toggle("is-active", p.dataset.cat === cat));
+  }
+  function runScaleStates(center){
+    items.forEach(el => el.classList.remove("is-left","is-center","is-right"));
+    const L = items.length;
+    items[(center - 1 + L) % L]?.classList.add("is-left");
+    items[center]?.classList.add("is-center");
+    items[(center + 1) % L]?.classList.add("is-right");
+  }
+  // ভিউপোর্ট সেন্টারে আনতে track.left কত হবে
+  function centerX(i){
+    const card = items[i];
+    const vMid = viewport.clientWidth / 2;
+    const cMid = card.offsetLeft + card.offsetWidth / 2;
+    return vMid - cMid;
+  }
+  function setOffset(x, animate = true){
+    track.style.transition = animate ? EASE : "none";
+    track.style.left = `${x}px`;
+  }
+  function moveTo(i, animate = true){
+    if (isAnimating && animate) return;
+    const L = items.length;
+    current = ((i % L) + L) % L;
+    isAnimating = !!animate;
+
+    runScaleStates(current);
+    const cat = items[current]?.dataset.cat;
+    if (cat) setActivePill(cat);
+
+    setOffset(centerX(current), animate);
+  }
+
+  /* ---------- transition end: clone → real snap-compensation ---------- */
+  function onTransitionEnd(e){
+    if (e.propertyName !== "left") return;
+    isAnimating = false;
+
+    // জাম্প দরকার কি না নির্ধারণ
+    let needJump = false;
+    let newIndex = current;
+    if (current === IDX.FIRST)      { newIndex = OFFSET;        needJump = true; }
+    else if (current === IDX.SECOND){ newIndex = OFFSET + 1;    needJump = true; }
+    else if (current === IDX.LAST1) { newIndex = OFFSET + R - 1;needJump = true; }
+    else if (current === IDX.LAST2) { newIndex = OFFSET + R - 2;needJump = true; }
+    if (!needJump) return;
+
+    // ভিজ্যুয়াল স্ন্যাপ এড়াতে delta compensate করি
+    const prevLeft   = parseFloat(getComputedStyle(track).left) || 0;
+    const beforeLeft = centerX(current);     // clone অবস্থার target
+
+    viewport.classList.add("no-anim");
+    track.style.transition = "none";
+
+    current = newIndex;
+    const afterLeft = centerX(current);      // real অবস্থার target
+    const delta = afterLeft - beforeLeft;    // compensate
+    track.style.left = `${prevLeft + delta}px`;
+
+    runScaleStates(current);
+    setActivePill(items[current]?.dataset.cat || "");
+
+    requestAnimationFrame(() => {
+      void track.offsetWidth;
+      viewport.classList.remove("no-anim");
+      track.style.transition = EASE;
+    });
+  }
+
+  /* ---------- events ---------- */
+  nextBtn?.addEventListener("click", () => moveTo(current + 1, true));
+  prevBtn?.addEventListener("click", () => moveTo(current - 1, true));
+  items.forEach((el, idx) => el.addEventListener("click", () => moveTo(idx, true)));
+  pills.forEach(p => p.addEventListener("click", () => {
+    const realIdx = firstIndexOfCat[p.dataset.cat] ?? 0;
+    moveTo(OFFSET + realIdx, true);
+  }));
+  viewport.setAttribute("tabindex","0");
+  viewport.addEventListener("keydown", e => {
+    if (e.key === "ArrowLeft")  moveTo(current - 1, true);
+    if (e.key === "ArrowRight") moveTo(current + 1, true);
+  });
+
+  track.addEventListener("transitionend", onTransitionEnd);
+  window.addEventListener("resize", () => moveTo(current, false));
+  window.addEventListener("load",   () => moveTo(current, false));
+
+  // init
+  moveTo(OFFSET, false);
+});
