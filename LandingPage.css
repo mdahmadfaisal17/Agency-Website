@@ -840,3 +840,25 @@ background: linear-gradient(135deg,
 .srv-arrow.next{ right:-4px; }
 .srv-arrow:hover{ background:rgba(255,255,255,.12); border-color:#ffb910; transform:translateY(calc(-50% - 1px)); }
 .srv-arrow:active{ transform:translateY(-50%); }
+/* Small screen adjustments */
+@media (max-width:600px){
+  .slider{
+    height:auto;
+    padding:80px 20px;
+    background-position:center;
+  }
+  .leftside{
+    width:100%;
+    margin-top:40px;
+  }
+  .slideline1{ font-size:24px; }
+  .slideline2{ font-size:64px; }
+  .sliderpara{ font-size:16px; margin:0; }
+  .cta-row{ flex-direction:column; gap:12px; }
+  .services-head h1{ font-size:32px; line-height:1.2; }
+  .services-head h3{ width:auto; font-size:16px; margin:20px 0; }
+  .srvnm{ flex-wrap:wrap; justify-content:center; gap:8px; }
+  .srv-arrow{ display:none; }
+  .srv-track{ gap:16px; }
+  .srv-card{ flex:0 0 100%; }
+}
